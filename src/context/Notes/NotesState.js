@@ -18,7 +18,7 @@ const NoteState = (props) => {
       }
     });
     const json = await response.json();
-    console.log(json);
+ 
     setNotes(json)
 
   }
@@ -35,20 +35,9 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag }),
     });
-    const json = await response.json();
-    console.log(json)
-
-    console.log("Adding a New note")
-    const note = {
-      "_id": "670fe7eqae3d156bb8d3c0a6e",
-      "user": "670fe7ace3d156bb8d3c0a6b",
-      "title": title,
-      "description": description,
-      "tag": tag,
-      "date": "2024-10-16T16:20:58.416Z",
-      "__v": 0
-    }
+    const note = await response.json();
     setNotes(notes.concat(note))
+    
   }
 
   //Delete a Note
@@ -63,7 +52,6 @@ const NoteState = (props) => {
       }
     });
     const json = response.json();
-    console.log(json)
 
     const newNotes = notes.filter((note)=>{return note._id !== _id})
     setNotes(newNotes)
@@ -82,7 +70,7 @@ const NoteState = (props) => {
       body: JSON.stringify({ title, description, tag }),
     });
     const json = await response.json();
-    console.log(json)
+
 
     let newNotes  = JSON.parse(JSON.stringify(notes))
 
